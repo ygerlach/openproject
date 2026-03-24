@@ -57,7 +57,7 @@ module MemberHelper
     if id.present? && EmailValidator.valid?(id) # we've got an email - invite that user
       invite_existing_or_new_users(email: id, send_notification:)
     else
-      id
+      id if Principal.visible(current_user).exists?(id: id)
     end
   end
 
