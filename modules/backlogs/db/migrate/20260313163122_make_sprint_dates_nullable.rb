@@ -28,54 +28,9 @@
 # See COPYRIGHT and LICENSE files for more details.
 #++
 
-module OpenProject::Backlogs
-  class SprintFilter < ::Queries::WorkPackages::Filter::WorkPackageFilter
-    def allowed_values
-      @allowed_values ||= sprints.pluck(:id, :id).map { |value, id| [value.to_s, id.to_s] }
-    end
-
-    def available?
-      scrum_projects_active? && backlogs_enabled?
-    end
-
-    def type
-      :list_optional
-    end
-
-    def self.key
-      :sprint_id
-    end
-
-    def human_name
-      WorkPackage.human_attribute_name(:sprint)
-    end
-
-    def ar_object_filter?
-      true
-    end
-
-    def value_objects
-      available_sprints = sprints.index_by(&:id)
-
-      values
-        .filter_map { |sprint_id| available_sprints[sprint_id.to_i] }
-    end
-
-    private
-
-    def backlogs_enabled?
-      project.nil? || project.module_enabled?(:backlogs)
-    end
-
-    def scrum_projects_active?
-      OpenProject::FeatureDecisions.scrum_projects_active?
-    end
-
-    def sprints
-      @sprints ||= begin
-        scope = Agile::Sprint.visible
-        project ? scope.for_project(project) : scope
-      end
-    end
+class MakeSprintDatesNullable < ActiveRecord::Migration[8.0]
+  def change
+    change_column_null :sprints, :start_date, true
+    change_column_null :sprints, :finish_date, true
   end
 end

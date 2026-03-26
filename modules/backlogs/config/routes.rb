@@ -45,6 +45,16 @@ Rails.application.routes.draw do
       end
     end
 
+    scope "projects/:project_id", as: "project" do
+      resources :inbox, only: [] do
+        member do
+          put :move
+          post :reorder
+          get :move_to_sprint_dialog
+        end
+      end
+    end
+
     # Sprint CRUD + lifecycle
     scope module: "agile" do
       scope "projects/:project_id", as: "project" do

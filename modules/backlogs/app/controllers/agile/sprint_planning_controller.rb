@@ -62,6 +62,7 @@ module Agile
 
     def load_backlogs
       @owner_backlogs = ::Backlog.owner_backlogs(@project)
+      @inbox_work_packages = ::Backlog.inbox_for(project: @project)
       @sprints = ::Agile::Sprint
         .for_project(@project)
         .not_completed

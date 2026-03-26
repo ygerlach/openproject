@@ -101,12 +101,13 @@ module OpenProject::Backlogs
                    { "agile/sprints": %i[start finish] },
                    permissible_on: :project,
                    require: :member,
-                   dependencies: %i[view_sprints manage_board_views],
+                   dependencies: %i[view_sprints manage_board_views manage_sprint_items],
                    visible: -> { OpenProject::FeatureDecisions.scrum_projects_active? }
 
         permission :manage_sprint_items,
                    { rb_stories: %i[move reorder],
-                     "agile/stories": :move },
+                     "agile/stories": :move,
+                     inbox: %i[move reorder move_to_sprint_dialog] },
                    permissible_on: :project,
                    require: :member,
                    dependencies: :view_sprints
@@ -275,8 +276,8 @@ module OpenProject::Backlogs
       ::Type.add_default_mapping(:details, :sprint)
 
       ::Queries::Register.register(::Query) do
+        filter Queries::WorkPackages::Filter::SprintFilter
         filter OpenProject::Backlogs::WorkPackageFilter
-        filter OpenProject::Backlogs::SprintFilter
 
         select OpenProject::Backlogs::QueryBacklogsSelect
       end
