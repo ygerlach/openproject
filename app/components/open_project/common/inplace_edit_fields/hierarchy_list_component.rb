@@ -64,7 +64,7 @@ module OpenProject
                      filter_mode_control_arguments: { hidden: true }
                    )) do |tree_view|
               item_options = {
-                expanded_fn: ->(*) { true },
+                expanded: true,
                 label_fn:,
                 checked_fn:,
                 select_variant: custom_field.multi_value? ? :multiple : :single

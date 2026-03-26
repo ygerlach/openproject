@@ -71,7 +71,7 @@ module CustomFieldHierarchyTreeViewHelper
       checked: options[:checked_fn]&.call(item) || false,
       current: options[:current] == item,
       disabled: options[:disabled]&.include?(item) || false,
-      expanded: options[:expanded]&.include?(item) || false,
+      expanded: options[:expanded] || false,
       href: options[:href_fn]&.call(item)
     }
   end
