@@ -65,6 +65,10 @@ jobs:
           if [ -f script/i18n/generate_seeders_i18n_source_file ]; then
             bundle exec script/i18n/generate_seeders_i18n_source_file
           fi
+      - name: "Show permissions"
+        run: |
+          ls -lad config/locales/crowdin/ modules/*/config/locales/crowdin/
+          ls -la config/locales/crowdin/ modules/*/config/locales/crowdin/
       - name: "Crowdin: upload sources and download translations"
         uses: crowdin/github-action@v2
         with:
@@ -79,25 +83,29 @@ jobs:
         env:
           OPENPROJECT_CROWDIN_PROJECT: ${{ secrets.OPENPROJECT_CROWDINV2_PROJECT }}
           OPENPROJECT_CROWDIN_API_KEY: ${{ secrets.OPENPROJECT_CROWDINV2_API_KEY }}
-      - name: "Fix ownership of downloaded translation files"
+      - name: "Show permissions"
         run: |
-          sudo chown -R $(id -u):$(id -g) config/locales/crowdin/ modules/*/config/locales/crowdin/
-      - name: "Fix root key in Portuguese crowdin translation files"
-        run: |
-          script/i18n/fix_crowdin_pt_language_root_key
-      - name: "Commit translations"
-        env:
-          BRANCH: ${{ matrix.branch }}
-        run: |
-          git config user.name "OpenProject Actions CI"
-          git config user.email "operations+ci@openproject.com"
-          echo "Updating combined translations"
-          git ls-files -m -o | grep 'crowdin\/.*\.yml$' | xargs git add
-          git diff --staged --name-only
-          if ! git diff --staged --exit-code --quiet; then
-            git commit -m "update locales from crowdin [ci skip]"
-            echo "Run git pull --rebase origin $BRANCH"
-            git pull --rebase origin "$BRANCH"
-            echo "Run git push origin $BRANCH"
-            git push origin "$BRANCH"
-          fi
+          ls -lad config/locales/crowdin/ modules/*/config/locales/crowdin/
+          ls -la config/locales/crowdin/ modules/*/config/locales/crowdin/
+      # - name: "Fix ownership of downloaded translation files"
+      #   run: |
+      #     sudo chown -R $(id -u):$(id -g) config/locales/crowdin/ modules/*/config/locales/crowdin/
+      # - name: "Fix root key in Portuguese crowdin translation files"
+      #   run: |
+      #     script/i18n/fix_crowdin_pt_language_root_key
+      # - name: "Commit translations"
+      #   env:
+      #     BRANCH: ${{ matrix.branch }}
+      #   run: |
+      #     git config user.name "OpenProject Actions CI"
+      #     git config user.email "operations+ci@openproject.com"
+      #     echo "Updating combined translations"
+      #     git ls-files -m -o | grep 'crowdin\/.*\.yml$' | xargs git add
+      #     git diff --staged --name-only
+      #     if ! git diff --staged --exit-code --quiet; then
+      #       git commit -m "update locales from crowdin [ci skip]"
+      #       echo "Run git pull --rebase origin $BRANCH"
+      #       git pull --rebase origin "$BRANCH"
+      #       echo "Run git push origin $BRANCH"
+      #       git push origin "$BRANCH"
+      #     fi
