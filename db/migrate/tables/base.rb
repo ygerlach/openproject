@@ -56,6 +56,6 @@ class Tables::Base
   end
 
   def self.table(_migration)
-    raise NotImplementedError
+    raise SubclassResponsibility
   end
 end

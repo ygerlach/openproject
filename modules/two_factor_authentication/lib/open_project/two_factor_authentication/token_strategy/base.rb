@@ -63,7 +63,7 @@ module OpenProject::TwoFactorAuthentication
       end
 
       def self.identifier
-        raise NotImplementedError
+        raise SubclassResponsibility
       end
 
       def self.device_type

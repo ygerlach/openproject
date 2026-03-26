@@ -39,7 +39,7 @@ module Bim::Bcf::API::V2_1
     protected
 
     def scope
-      raise NotImplementedError
+      raise SubclassResponsibility
     end
   end
 end

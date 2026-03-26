@@ -32,11 +32,11 @@ module OpenProject::TextFormatting::Formats
   class BaseFormat
     class << self
       def format
-        raise NotImplementedError
+        raise SubclassResponsibility
       end
 
       def priority
-        raise NotImplementedError
+        raise SubclassResponsibility
       end
 
       def helper

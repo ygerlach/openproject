@@ -67,11 +67,11 @@ module BaseServices
     end
 
     def instance(_params)
-      raise NotImplementedError
+      raise SubclassResponsibility
     end
 
     def default_contract_class
-      raise NotImplementedError
+      raise SubclassResponsibility
     end
 
     def instance_class

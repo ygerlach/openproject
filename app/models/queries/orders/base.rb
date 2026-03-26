@@ -50,7 +50,7 @@ module Queries
       end
 
       def self.key
-        raise NotImplementedError
+        raise SubclassResponsibility
       end
 
       def apply_to(query_scope)

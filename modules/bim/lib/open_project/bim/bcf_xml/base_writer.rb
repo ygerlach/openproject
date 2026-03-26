@@ -11,7 +11,7 @@ module OpenProject::Bim::BcfXml
     protected
 
     def root_node
-      raise NotImplementedError
+      raise SubclassResponsibility
     end
 
     def root_node_attributes

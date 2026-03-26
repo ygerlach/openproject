@@ -92,7 +92,7 @@ module TwoFactorAuthentication
     end
 
     def self.device_type
-      raise NotImplementedError
+      raise SubclassResponsibility
     end
 
     def self.available_channels_in_strategy

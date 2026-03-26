@@ -39,7 +39,7 @@ module API
           end
 
           def apply(_work_package)
-            raise NotImplementedError
+            raise SubclassResponsibility
           end
 
           def self.module

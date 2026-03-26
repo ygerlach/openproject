@@ -2,11 +2,11 @@ module XlsExport
   module Concerns
     module SpreadsheetBuilder
       def records
-        raise NotImplementedError
+        raise SubclassResponsibility
       end
 
       def spreadsheet_title
-        raise NotImplementedError
+        raise SubclassResponsibility
       end
 
       def export!

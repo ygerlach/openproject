@@ -44,7 +44,7 @@ module API
       end
 
       def json_cache_key
-        raise NotImplementedError
+        raise SubclassResponsibility
       end
 
       private

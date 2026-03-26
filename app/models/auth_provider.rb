@@ -49,7 +49,7 @@ class AuthProvider < ApplicationRecord
   end
 
   def human_type
-    raise NotImplementedError
+    raise SubclassResponsibility
   end
 
   def auth_url

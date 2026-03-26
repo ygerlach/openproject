@@ -34,7 +34,7 @@ module OpenProject::Webhooks::EventResources
       end
 
       def available_actions
-        raise NotImplementedError
+        raise SubclassResponsibility
       end
 
       ##
@@ -46,13 +46,13 @@ module OpenProject::Webhooks::EventResources
       ##
       # Get the name of this resource
       def resource_name
-        raise NotImplementedError
+        raise SubclassResponsibility
       end
 
       ##
       # Get the subscriptions for OP::Notifications
       def notification_names
-        raise NotImplementedError
+        raise SubclassResponsibility
       end
 
       protected

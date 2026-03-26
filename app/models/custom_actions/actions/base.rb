@@ -42,7 +42,7 @@ class CustomActions::Actions::Base
   end
 
   def allowed_values
-    raise NotImplementedError
+    raise SubclassResponsibility
   end
 
   def value_objects
@@ -52,11 +52,11 @@ class CustomActions::Actions::Base
   end
 
   def type
-    raise NotImplementedError
+    raise SubclassResponsibility
   end
 
   def apply(_work_package)
-    raise NotImplementedError
+    raise SubclassResponsibility
   end
 
   def human_name
@@ -64,7 +64,7 @@ class CustomActions::Actions::Base
   end
 
   def self.key
-    raise NotImplementedError
+    raise SubclassResponsibility
   end
 
   def self.all

@@ -175,7 +175,7 @@ class Report::Filter
     end
 
     def to_hash
-      raise NotImplementedError
+      raise SubclassResponsibility
     end
 
     def transformed_values

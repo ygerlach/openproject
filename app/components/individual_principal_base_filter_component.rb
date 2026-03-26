@@ -75,7 +75,7 @@ class IndividualPrincipalBaseFilterComponent < ApplicationComponent
     end
 
     def base_query
-      raise NotImplementedError
+      raise SubclassResponsibility
     end
 
     protected
@@ -93,7 +93,7 @@ class IndividualPrincipalBaseFilterComponent < ApplicationComponent
   # INSTANCE METHODS:
 
   def filter_path
-    raise NotImplementedError
+    raise SubclassResponsibility
   end
 
   def initially_visible?

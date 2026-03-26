@@ -23,39 +23,14 @@
 #
 # You should have received a copy of the GNU General Public License
 # along with this program; if not, write to the Free Software
-# Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
+# Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
 #
 # See COPYRIGHT and LICENSE files for more details.
 #++
+class SubclassResponsibility < StandardError
+  def initialize(message = nil)
+    message ||= "The subclass needs to implement this method."
 
-module Members::Concerns::NotificationSender
-  extend ActiveSupport::Concern
-
-  included do
-    def send_notification(member)
-      OpenProject::Notifications.send(event_type,
-                                      member:,
-                                      message: notification_message,
-                                      send_notifications: send_notifications?)
-    end
-
-    def set_attributes_params(params)
-      super.except(:notification_message, :send_notifications)
-    end
-
-    def notification_message
-      params[:notification_message]
-    end
-
-    def send_notifications?
-      # Because this class is mixed in in a service using around_call hook, it
-      # can not rely on Service#perform method setting the send_notifications
-      # configuration. It would be nice to unify both.
-      params.fetch(:send_notifications, Journal::NotificationConfiguration.active?)
-    end
-
-    def event_type
-      raise SubclassResponsibility
-    end
+    super
   end
 end

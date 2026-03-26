@@ -39,11 +39,11 @@ module BulkServices
       end
 
       def mapping_attributes_for_all_projects(params)
-        raise NotImplementedError, "This method must be implemented in a subclass"
+        raise SubclassResponsibility
       end
 
       def incoming_projects
-        raise NotImplementedError, "This method must be implemented in a subclass"
+        raise SubclassResponsibility
       end
     end
   end

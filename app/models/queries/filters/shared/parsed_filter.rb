@@ -50,11 +50,11 @@ module Queries::Filters::Shared::ParsedFilter
   private
 
   def split_values
-    raise NotImplementedError
+    raise SubclassResponsibility
   end
 
   def value_conditions
-    raise NotImplementedError
+    raise SubclassResponsibility
   end
 
   def validate_values

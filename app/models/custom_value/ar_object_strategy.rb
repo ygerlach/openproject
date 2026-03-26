@@ -69,7 +69,7 @@ class CustomValue::ARObjectStrategy < CustomValue::FormatStrategy
   end
 
   def ar_class
-    raise NotImplementedError
+    raise SubclassResponsibility
   end
 
   def ar_object(value)

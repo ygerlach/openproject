@@ -136,7 +136,7 @@ module Admin
       end
 
       def enumeration_class
-        raise NotImplementedError
+        raise SubclassResponsibility
       end
 
       def enumeration_permitted_params

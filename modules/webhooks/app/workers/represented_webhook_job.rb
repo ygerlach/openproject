@@ -73,11 +73,11 @@ class RepresentedWebhookJob < WebhookJob
   end
 
   def payload_key
-    raise NotImplementedError
+    raise SubclassResponsibility
   end
 
   def payload_representer_class
-    raise NotImplementedError
+    raise SubclassResponsibility
   end
 
   def project_id # rubocop:disable Rails/Delegate

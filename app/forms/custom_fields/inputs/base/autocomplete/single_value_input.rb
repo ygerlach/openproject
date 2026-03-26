@@ -49,6 +49,6 @@ class CustomFields::Inputs::Base::Autocomplete::SingleValueInput < CustomFields:
   end
 
   def decorated?
-    raise NotImplementedError
+    raise SubclassResponsibility
   end
 end

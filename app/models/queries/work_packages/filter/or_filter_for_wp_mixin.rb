@@ -50,7 +50,7 @@ module Queries::WorkPackages::Filter::OrFilterForWpMixin
   end
 
   def filter_configurations
-    raise NotImplementedError
+    raise SubclassResponsibility
   end
 
   def create_instances

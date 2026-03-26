@@ -50,7 +50,7 @@ module OpPrimer
     end
 
     def default_button_title
-      raise NotImplementedError
+      raise SubclassResponsibility
     end
 
     def disabled?

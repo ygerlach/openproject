@@ -42,11 +42,11 @@ module Queries::Filters::Strategies
     private
 
     def numeric_class
-      raise NotImplementedError
+      raise SubclassResponsibility
     end
 
     def error_message
-      raise NotImplementedError
+      raise SubclassResponsibility
     end
 
     def validate_values_all_numeric

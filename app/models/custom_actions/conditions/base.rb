@@ -67,7 +67,7 @@ class CustomActions::Conditions::Base
   end
 
   def self.key
-    raise NotImplementedError
+    raise SubclassResponsibility
   end
 
   def validate(errors)

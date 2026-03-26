@@ -57,10 +57,10 @@ class Type::FormGroup
   end
 
   def members
-    raise NotImplementedError
+    raise SubclassResponsibility
   end
 
   def active_members(_project)
-    raise NotImplementedError
+    raise SubclassResponsibility
   end
 end
